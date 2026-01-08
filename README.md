@@ -133,10 +133,10 @@ your-project/
 │   ├── notes/                # Working notes
 │   ├── research/             # Market research
 │   └── output/               # Final documents
-├── files/                    # Reference inputs
-│   ├── Strategy/
-│   ├── Research/
-│   └── Notes/
+├── reference_files/          # Reference inputs (read-only)
+│   ├── Strategy/             # Source strategy documents
+│   ├── Research/             # Market research data
+│   └── Notes/                # General notes and ideas
 └── CLAUDE.md                 # Copy from templates/
 ```
 

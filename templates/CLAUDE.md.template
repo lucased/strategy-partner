@@ -18,10 +18,10 @@ your-project/
 │   │   └── strategy-working-notes.md
 │   ├── research/               # Market research outputs
 │   └── output/                 # Final strategy documents
-├── files/                      # Reference inputs (optional)
+├── reference_files/            # Reference inputs (read-only)
 │   ├── Strategy/               # Source strategy documents
 │   ├── Research/               # Market research data
-│   └── Notes/                  # General notes
+│   └── Notes/                  # General notes and ideas
 └── CLAUDE.md
 ```
 
