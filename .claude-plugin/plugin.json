@@ -1,0 +1,10 @@
+{
+  "name": "strategy-skills",
+  "description": "Strategy development toolkit integrating Rumelt's Good Strategy/Bad Strategy, Helmer's 7 Powers, McKinsey's Three Horizons, and Lafley/Martin's Playing to Win frameworks. Includes a strategy-partner agent and six specialized skills for rigorous strategy development.",
+  "version": "1.0.0",
+  "author": {
+    "name": "BTC Markets"
+  },
+  "repository": "https://github.com/btcmarkets/strategy-skills",
+  "license": "MIT"
+}
