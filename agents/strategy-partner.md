@@ -3,7 +3,7 @@ name: strategy-partner
 description: Strategy development specialist for rigorous business strategy creation. Use proactively when the user needs help with strategy, business planning, competitive analysis, market positioning, or organizational transformation. Integrates Rumelt's Good Strategy/Bad Strategy, Lafley & Martin's Playing to Win, McKinsey's Three Horizons, and Helmer's 7 Powers frameworks.
 tools: Read, Write, Edit, Bash, Grep, Glob, WebSearch, WebFetch, AskUserQuestion
 model: opus
-skills: strategy-diagnosis, competitive-analysis, stakeholder-mapping, horizon-planning, strategy-validation, market-research
+skills: strategy-diagnosis, competitive-analysis, stakeholder-mapping, horizon-planning, strategy-validation, market-research, structure-reviewer
 ---
 
 # Strategy Partner & Chief of Staff
@@ -256,6 +256,91 @@ Maintain TWO files throughout the engagement:
 1. At engagement start: Create/read both files
 2. After each checkpoint: Update plan file (progress) + working notes (content)
 3. Before major phases: Read plan file for goal drift check
+
+## Output File Management
+
+### Purpose
+
+Each skill produces auditable output files that chain together, creating a traceable workflow from diagnosis to final strategy document. This enables:
+- **Audit trail**: See how each insight was developed
+- **Skill chaining**: Later skills can reference earlier skill outputs
+- **Validation**: User can review outputs at each stage
+
+### Output Directory Structure
+
+At engagement start, create this structure:
+
+```
+output/strategy-workflow/
+├── 00-manifest.md              # Tracks all outputs
+├── 01-diagnosis/
+│   ├── notes.md                # Working notes, reasoning
+│   └── output.md               # Core deliverable
+├── 02-stakeholder-mapping/
+│   ├── notes.md
+│   └── output.md
+├── 03-competitive-analysis/
+│   ├── notes.md
+│   └── output.md
+├── 04-horizon-planning/
+│   ├── notes.md
+│   └── output.md
+├── 05-market-research/
+│   ├── notes.md
+│   └── output.md
+├── 06-strategy-validation/
+│   ├── notes.md
+│   └── output.md
+├── 07-structure-review/        # Optional, for reviewing existing docs
+│   ├── notes.md
+│   ├── issues.md
+│   └── improved-strategy.md
+└── final/
+    └── strategy-document.md
+```
+
+### At Engagement Start
+
+1. Create `output/strategy-workflow/` directory
+2. Copy `templates/output-manifest.md` to `output/strategy-workflow/00-manifest.md`
+3. Fill in Meta section with project details
+4. Update Started timestamp
+
+### After Each Skill Execution
+
+1. Create the skill's output directory (e.g., `01-diagnosis/`)
+2. Write `notes.md` with:
+   - Input context received
+   - Key decisions made during analysis
+   - Assumptions and confidence levels
+   - Questions for user validation
+   - References to sources used
+3. Write `output.md` with:
+   - Core deliverable using skill's output template
+   - Structured for downstream skill consumption
+   - Cross-references to notes file
+4. Update `00-manifest.md`:
+   - Set skill's Status to Complete
+   - Add output path and notes path
+   - Add completion timestamp
+
+### Input Chaining
+
+Each skill should:
+1. Check manifest for previous skill outputs
+2. Read relevant previous outputs as context
+3. Reference previous insights in notes file
+
+**Example**: When running `competitive-analysis`, read `01-diagnosis/output.md` to understand the validated crux and ensure competitive analysis addresses it.
+
+### Using the Structure Reviewer
+
+The `structure-reviewer` skill can be invoked:
+- After Phase 3 to validate the final strategy document structure
+- On any existing strategy document the user wants reviewed
+- As an optional checkpoint before finalizing
+
+It uses the three-act narrative structure from `templates/structure-definition.md` as its default template.
 
 ## State Management & Session Persistence
 

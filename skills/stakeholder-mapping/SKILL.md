@@ -225,3 +225,30 @@ Watch for these signals that organizational reality will derail the strategy:
 ❌ **Success metrics** conflict with existing measurement systems
 ❌ **Sacred cow** must be challenged but no one will
 ❌ **History of failed** similar initiatives without addressing root causes
+
+---
+
+## Output File Requirements
+
+When this skill completes, write TWO files:
+
+### 1. Notes File (`02-stakeholder-mapping/notes.md`)
+Contains:
+- Input context received
+- Key decisions made during analysis
+- Assumptions and confidence levels
+- Questions for user validation
+- References to sources used
+
+### 2. Output File (`02-stakeholder-mapping/output.md`)
+Contains:
+- Core deliverable using the Output Template above
+- Structured for downstream skill consumption
+- Cross-references to notes file for audit trail
+
+### 3. Update Manifest
+After writing files, update `00-manifest.md` with:
+- Status: Complete
+- Output path: `02-stakeholder-mapping/output.md`
+- Notes path: `02-stakeholder-mapping/notes.md`
+- Timestamp

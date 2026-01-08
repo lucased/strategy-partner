@@ -355,3 +355,30 @@ After completing the diagnosis, document:
 Based on Richard Rumelt's frameworks:
 - *Good Strategy, Bad Strategy: The Difference and Why It Matters* (2011)
 - *The Crux: How Leaders Become Strategists* (2022)
+
+---
+
+## Output File Requirements
+
+When this skill completes, write TWO files:
+
+### 1. Notes File (`01-diagnosis/notes.md`)
+Contains:
+- Input context received
+- Key decisions made during analysis
+- Assumptions and confidence levels
+- Questions for user validation
+- References to sources used
+
+### 2. Output File (`01-diagnosis/output.md`)
+Contains:
+- Core deliverable using the Output Template above
+- Structured for downstream skill consumption
+- Cross-references to notes file for audit trail
+
+### 3. Update Manifest
+After writing files, update `00-manifest.md` with:
+- Status: Complete
+- Output path: `01-diagnosis/output.md`
+- Notes path: `01-diagnosis/notes.md`
+- Timestamp

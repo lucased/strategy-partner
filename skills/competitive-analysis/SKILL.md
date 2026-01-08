@@ -259,3 +259,30 @@ When analyzing competitors, search for:
 - Customer reviews and complaints
 - Financial performance (if public)
 - Strategic statements from leadership
+
+---
+
+## Output File Requirements
+
+When this skill completes, write TWO files:
+
+### 1. Notes File (`03-competitive-analysis/notes.md`)
+Contains:
+- Input context received
+- Key decisions made during analysis
+- Assumptions and confidence levels
+- Questions for user validation
+- References to sources used
+
+### 2. Output File (`03-competitive-analysis/output.md`)
+Contains:
+- Core deliverable using the Competitive Analysis Output Template above
+- Structured for downstream skill consumption
+- Cross-references to notes file for audit trail
+
+### 3. Update Manifest
+After writing files, update `00-manifest.md` with:
+- Status: Complete
+- Output path: `03-competitive-analysis/output.md`
+- Notes path: `03-competitive-analysis/notes.md`
+- Timestamp
