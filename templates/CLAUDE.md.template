@@ -4,7 +4,7 @@ This file provides guidance to Claude Code when working with this strategy proje
 
 ## Purpose
 
-This is a strategy development workspace using the strategy-skills plugin.
+This is a strategy development workspace using the strategy-partner plugin.
 
 ## Project Structure
 
@@ -36,13 +36,13 @@ This project uses four integrated strategy frameworks:
 
 ## Getting Started
 
-1. Run `/strategy-skills:strategy` to start a strategy session
+1. Run `/strategy-partner:strategy` to start a strategy session
 2. The Strategy Partner agent will guide you through the discovery process
 3. Each phase includes checkpoints for validation
 
 ## Available Skills
 
-The strategy-skills plugin provides:
+The strategy-partner plugin provides:
 
 - `strategy-diagnosis` - Problem diagnosis and crux identification
 - `competitive-analysis` - 7 Powers and competitive positioning

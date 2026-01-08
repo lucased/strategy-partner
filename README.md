@@ -1,4 +1,4 @@
-# Strategy Skills Plugin
+# Strategy Partner Plugin
 
 A Claude Code plugin for rigorous business strategy development. Integrates four proven frameworks into a structured discovery process.
 
@@ -11,19 +11,65 @@ A Claude Code plugin for rigorous business strategy development. Integrates four
 
 ## Installation
 
+### Via Marketplace (Recommended)
+
+1. Add the marketplace:
+   ```
+   /plugin marketplace add <github-username>/strategy-partner
+   ```
+
+2. Install the plugin:
+   ```
+   /plugin install strategy-partner@strategy-partner
+   ```
+
+3. Verify installation:
+   ```
+   /help
+   ```
+   You should see `/strategy-partner:strategy` in the available commands.
+
+### Update to Latest Version
+
+```
+/plugin marketplace update
+/plugin update strategy-partner
+```
+
 ### Development Testing
 
 ```bash
-claude --plugin-dir ./strategy-skills
+claude --plugin-dir ./strategy-partner
 ```
 
-### Manual Installation
+### Local Project Installation (Without Marketplace)
 
-Copy the plugin to your Claude Code plugins directory:
+If you want to use the plugin on a specific project without installing via marketplace:
 
-```bash
-cp -r strategy-skills ~/.claude/plugins/
-```
+1. Clone the repository into your project or a shared location:
+   ```bash
+   git clone https://github.com/<github-username>/strategy-partner.git
+   ```
+
+2. When starting Claude Code, pass the plugin directory:
+   ```bash
+   claude --plugin-dir /path/to/strategy-partner
+   ```
+
+   Or for a project-specific setup, add to your shell profile or project scripts:
+   ```bash
+   alias claude-strategy='claude --plugin-dir /path/to/strategy-partner'
+   ```
+
+3. For multiple working directories, you can also specify them explicitly:
+   ```bash
+   claude --plugin-dir /path/to/strategy-partner --cwd /path/to/your/project
+   ```
+
+4. Copy the template to your project:
+   ```bash
+   cp /path/to/strategy-partner/templates/CLAUDE.md.template your-project/CLAUDE.md
+   ```
 
 ## Usage
 
@@ -32,7 +78,7 @@ cp -r strategy-skills ~/.claude/plugins/
 Use the slash command:
 
 ```
-/strategy-skills:strategy Help me develop a growth strategy for 2026
+/strategy-partner:strategy Help me develop a growth strategy for 2026
 ```
 
 Or simply describe your challenge and invoke the strategy-partner agent.
@@ -67,9 +113,10 @@ Each phase includes checkpoints where you validate insights before proceeding.
 ## Plugin Structure
 
 ```
-strategy-skills/
+strategy-partner/
 ├── .claude-plugin/
-│   └── plugin.json           # Plugin manifest
+│   ├── plugin.json           # Plugin manifest
+│   └── marketplace.json      # Marketplace definition
 ├── agents/
 │   └── strategy-partner.md   # Main strategy agent
 ├── skills/
@@ -80,7 +127,7 @@ strategy-skills/
 │   ├── market-research/
 │   └── strategy-validation/
 ├── commands/
-│   └── strategy.md           # /strategy-skills:strategy command
+│   └── strategy.md           # /strategy-partner:strategy command
 ├── lib/
 │   ├── docx-helpers.js       # Word document generation (optional)
 │   └── package.json

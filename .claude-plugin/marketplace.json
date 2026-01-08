@@ -1,0 +1,24 @@
+{
+  "name": "strategy-partner",
+  "owner": {
+    "name": "Lucas Dobbins"
+  },
+  "metadata": {
+    "description": "Strategy development toolkit with Rumelt, Helmer, McKinsey, and Lafley/Martin frameworks",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "strategy-partner",
+      "source": ".",
+      "description": "Strategy Partner agent and 6 strategy skills for rigorous business strategy development",
+      "version": "1.0.0",
+      "author": {
+        "name": "Lucas Dobbins"
+      },
+      "license": "MIT",
+      "keywords": ["strategy", "business", "rumelt", "7-powers", "three-horizons", "good-strategy"],
+      "category": "productivity"
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 {
-  "name": "strategy-skills-lib",
+  "name": "strategy-partner-lib",
   "version": "1.0.0",
-  "description": "Document generation utilities for strategy-skills plugin",
+  "description": "Document generation utilities for strategy-partner plugin",
   "main": "docx-helpers.js",
   "dependencies": {
     "docx": "^9.5.1"
