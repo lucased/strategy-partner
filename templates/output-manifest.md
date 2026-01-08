@@ -38,6 +38,9 @@ This file tracks all outputs from a strategy development workflow. It is automat
 | 5 | market-research | Pending | 05-market-research/output.md | 05-market-research/notes.md | - |
 | 6 | strategy-validation | Pending | 06-strategy-validation/output.md | 06-strategy-validation/notes.md | - |
 | 7 | structure-review | Pending | 07-structure-review/output.md | 07-structure-review/notes.md | - |
+| 8 | presentation-writer | Pending | 08-presentation-writer/output.md | 08-presentation-writer/notes.md | - |
+| 8i | presentation-writer-internal | Pending | 08i-presentation-writer-internal/output.md | 08i-presentation-writer-internal/notes.md | - |
+| 9 | presentation-builder | Pending | 09-presentation-builder/output.md | 09-presentation-builder/notes.md | - |
 | Final | Document Assembly | Pending | final/strategy-document.md | - | - |
 
 ---

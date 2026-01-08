@@ -1,9 +1,10 @@
 {
   "name": "strategy-partner-lib",
-  "version": "1.0.0",
-  "description": "Document generation utilities for strategy-partner plugin",
+  "version": "1.1.0",
+  "description": "Document and presentation generation utilities for strategy-partner plugin",
   "main": "docx-helpers.js",
   "dependencies": {
-    "docx": "^9.5.1"
+    "docx": "^9.5.1",
+    "pptxgenjs": "^3.12.0"
   }
 }

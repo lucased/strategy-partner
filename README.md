@@ -109,6 +109,10 @@ Each phase includes checkpoints where you validate insights before proceeding.
 | `horizon-planning` | Creating roadmaps, sequencing initiatives, resource allocation |
 | `market-research` | Sizing markets (TAM/SAM/SOM), competitive intelligence |
 | `strategy-validation` | Testing strategy quality, identifying weak points |
+| `structure-reviewer` | Validating document structure against Three-Act Narrative |
+| `presentation-writer` | Transforming strategy to investor deck content (10-12 slides) |
+| `presentation-writer-internal` | Creating internal stakeholder decks (board, leadership, team) |
+| `presentation-builder` | Generating HTML and PowerPoint presentations from slide content |
 
 ## Plugin Structure
 
@@ -125,22 +129,61 @@ strategy-partner/
 │   ├── stakeholder-mapping/
 │   ├── horizon-planning/
 │   ├── market-research/
-│   └── strategy-validation/
+│   ├── strategy-validation/
+│   ├── structure-reviewer/
+│   ├── presentation-writer/
+│   ├── presentation-writer-internal/
+│   └── presentation-builder/
 ├── commands/
 │   └── strategy.md           # /strategy-partner:strategy command
 ├── lib/
-│   ├── docx-helpers.js       # Word document generation (optional)
+│   ├── docx-helpers.js       # Word document generation
+│   ├── pptx-helpers.js       # PowerPoint generation
 │   └── package.json
 ├── templates/
-│   └── CLAUDE.md.template    # Template for new projects
+│   ├── CLAUDE.md.template    # Template for new projects
+│   ├── theme.json            # Presentation theme config
+│   └── investor-deck.html    # HTML slide template
 └── README.md
 ```
 
 ## Document Generation (Optional)
 
-The plugin includes utilities for generating professional Word documents.
+The plugin includes utilities for generating professional Word documents and presentations.
 
-### Setup
+### Presentation Generation
+
+The plugin can transform strategy documents into presentations for different audiences:
+
+#### Investor Presentations (External)
+- **presentation-writer** - Transforms strategy into a 10-12 slide investor deck (Sequoia template)
+- Transforms tone from internal/problem-focused to external/opportunity-focused
+- Optimized for VC, PE, and strategic investor audiences
+
+#### Internal Presentations (Stakeholder)
+- **presentation-writer-internal** - Creates 12-slide internal stakeholder decks
+- **Preserves honest, conditional language** (no tone transformation)
+- Includes risks, constraints, validation requirements, and fallback strategies
+- Optimized for board, leadership, and team audiences
+
+Both presentation types use:
+- **presentation-builder** - Generates HTML (viewable in browser) and PowerPoint files
+
+Workflow:
+```
+structure-reviewer → presentation-writer          → presentation-builder → deck.html
+                  └→ presentation-writer-internal → presentation-builder → deck-internal.html
+```
+
+Customize branding via `templates/theme.json`:
+- Colors (primary, secondary, accent)
+- Typography (fonts, sizes)
+- Logo placement
+- Slide layouts
+
+### Word Document Generation
+
+Setup:
 
 ```bash
 cd lib && npm install

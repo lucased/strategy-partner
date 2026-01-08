@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{COMPANY_NAME}} - Investor Deck</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '{{COLOR_PRIMARY}}',
+            secondary: '{{COLOR_SECONDARY}}',
+            accent: '{{COLOR_ACCENT}}'
+          },
+          fontFamily: {
+            heading: ['{{FONT_HEADING}}', 'system-ui', 'sans-serif'],
+            body: ['{{FONT_BODY}}', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family={{FONT_HEADING}}:wght@400;500;600;700&family={{FONT_BODY}}:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    .slide {
+      aspect-ratio: 16 / 9;
+      max-width: 1280px;
+      max-height: 720px;
+    }
+
+    .slide-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: calc(100vh - 80px);
+      padding: 20px;
+    }
+
+    /* Fullscreen mode */
+    .fullscreen .navigation { display: none; }
+    .fullscreen .slide-container { min-height: 100vh; padding: 0; }
+    .fullscreen .slide { max-width: 100vw; max-height: 100vh; width: 100vw; }
+
+    /* Print styles */
+    @media print {
+      .navigation { display: none !important; }
+      .slide-container { min-height: auto; padding: 0; page-break-after: always; }
+      .slide { max-width: 100%; max-height: 100%; box-shadow: none !important; }
+      body { background: white !important; }
+    }
+
+    /* Thumbnail grid */
+    .thumbnail {
+      aspect-ratio: 16 / 9;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .thumbnail:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body class="bg-gray-100 font-body">
+  <!-- Navigation Bar -->
+  <nav class="navigation fixed top-0 left-0 right-0 bg-white shadow-md z-50">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+      <div class="flex items-center space-x-4">
+        <span class="font-heading font-bold text-primary">{{COMPANY_NAME}}</span>
+        <span class="text-gray-400">|</span>
+        <span class="text-sm text-gray-500">Investor Deck</span>
+      </div>
+
+      <div class="flex items-center space-x-2">
+        <button id="prevBtn" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-secondary transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+          ← Prev
+        </button>
+        <span id="slideCounter" class="px-4 py-2 text-gray-600 font-medium min-w-[80px] text-center">
+          1 / {{TOTAL_SLIDES}}
+        </span>
+        <button id="nextBtn" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-secondary transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+          Next →
+        </button>
+      </div>
+
+      <div class="flex items-center space-x-2">
+        <button id="thumbnailBtn" class="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors" title="Slide Overview">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
+          </svg>
+        </button>
+        <button id="fullscreenBtn" class="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors" title="Fullscreen">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Slides Container -->
+  <main id="slidesContainer" class="pt-16">
+
+    <!-- ==================== SLIDE 1: TITLE ==================== -->
+    <div class="slide-container" data-slide="1">
+      <section class="slide bg-gradient-to-br from-primary to-secondary rounded-lg shadow-2xl flex flex-col justify-center items-center text-white p-16">
+        {{#LOGO}}
+        <img src="{{LOGO_PATH}}" alt="Logo" class="w-32 mb-8">
+        {{/LOGO}}
+        <h1 class="text-5xl font-heading font-bold mb-6 text-center">{{SLIDE_1_HEADLINE}}</h1>
+        <p class="text-xl opacity-90 text-center max-w-2xl">{{SLIDE_1_TAGLINE}}</p>
+      </section>
+    </div>
+
+    <!-- ==================== SLIDE 2: PROBLEM ==================== -->
+    <div class="slide-container hidden" data-slide="2">
+      <section class="slide bg-white rounded-lg shadow-2xl p-16 flex flex-col">
+        <h2 class="text-4xl font-heading font-bold text-primary mb-10">{{SLIDE_2_HEADLINE}}</h2>
+        <ul class="space-y-6 text-xl flex-grow">
+          {{#SLIDE_2_CONTENT}}
+          <li class="flex items-start">
+            <span class="text-accent text-2xl mr-4 mt-1">•</span>
+            <span class="text-gray-700">{{.}}</span>
+          </li>
+          {{/SLIDE_2_CONTENT}}
+        </ul>
+        <div class="text-right text-sm text-gray-400">2 / {{TOTAL_SLIDES}}</div>
+      </section>
+    </div>
+
+    <!-- ==================== SLIDE 3: SOLUTION ==================== -->
+    <div class="slide-container hidden" data-slide="3">
+      <section class="slide bg-white rounded-lg shadow-2xl p-16 flex flex-col">
+        <h2 class="text-4xl font-heading font-bold text-primary mb-10">{{SLIDE_3_HEADLINE}}</h2>
+        <ul class="space-y-6 text-xl flex-grow">
+          {{#SLIDE_3_CONTENT}}
+          <li class="flex items-start">
+            <span class="text-accent text-2xl mr-4 mt-1">•</span>
+            <span class="text-gray-700">{{.}}</span>
+          </li>
+          {{/SLIDE_3_CONTENT}}
+        </ul>
+        <div class="text-right text-sm text-gray-400">3 / {{TOTAL_SLIDES}}</div>
+      </section>
+    </div>
+
+    <!-- ==================== SLIDE 4: MARKET ==================== -->
+    <div class="slide-container hidden" data-slide="4">
+      <section class="slide bg-white rounded-lg shadow-2xl p-16 flex flex-col">
+        <h2 class="text-4xl font-heading font-bold text-primary mb-10">{{SLIDE_4_HEADLINE}}</h2>
+        <div class="grid grid-cols-3 gap-8 flex-grow items-center">
+          <div class="bg-gray-50 rounded-xl p-8 text-center">
+            <div class="text-5xl font-heading font-bold text-primary">{{TAM_VALUE}}</div>
+            <div class="text-gray-500 mt-2">TAM</div>
+            <div class="text-sm text-gray-400 mt-1">Total Addressable Market</div>
+          </div>
+          <div class="bg-gray-50 rounded-xl p-8 text-center">
+            <div class="text-5xl font-heading font-bold text-secondary">{{SAM_VALUE}}</div>
+            <div class="text-gray-500 mt-2">SAM</div>
+            <div class="text-sm text-gray-400 mt-1">Serviceable Addressable Market</div>
+          </div>
+          <div class="bg-gray-50 rounded-xl p-8 text-center">
+            <div class="text-5xl font-heading font-bold text-accent">{{SOM_VALUE}}</div>
+            <div class="text-gray-500 mt-2">SOM</div>
+            <div class="text-sm text-gray-400 mt-1">Serviceable Obtainable Market</div>
+          </div>
+        </div>
+        <div class="text-right text-sm text-gray-400">4 / {{TOTAL_SLIDES}}</div>
+      </section>
+    </div>
+
+    <!-- ==================== SLIDE 5: PRODUCT ==================== -->
+    <div class="slide-container hidden" data-slide="5">
+      <section class="slide bg-white rounded-lg shadow-2xl p-16 flex flex-col">
+        <h2 class="text-4xl font-heading font-bold text-primary mb-10">{{SLIDE_5_HEADLINE}}</h2>
+        <div class="flex-grow flex items-center justify-center">
+          <div class="bg-gray-100 rounded-xl p-8 w-full max-w-3xl">
+            <div class="text-center text-gray-400 mb-4">[Product Screenshot / Demo]</div>
+            <ul class="space-y-4 text-lg">
+              {{#SLIDE_5_CONTENT}}
+              <li class="flex items-start">
+                <span class="text-accent mr-3">✓</span>
+                <span class="text-gray-700">{{.}}</span>
+              </li>
+              {{/SLIDE_5_CONTENT}}
+            </ul>
+          </div>
+        </div>
+        <div class="text-right text-sm text-gray-400">5 / {{TOTAL_SLIDES}}</div>
+      </section>
+    </div>
+
+    <!-- ==================== SLIDE 6: BUSINESS MODEL ==================== -->
+    <div class="slide-container hidden" data-slide="6">
+      <section class="slide bg-white rounded-lg shadow-2xl p-16 flex flex-col">
+        <h2 class="text-4xl font-heading font-bold text-primary mb-10">{{SLIDE_6_HEADLINE}}</h2>
+        <ul class="space-y-6 text-xl flex-grow">
+          {{#SLIDE_6_CONTENT}}
+          <li class="flex items-start">
+            <span class="text-accent text-2xl mr-4 mt-1">•</span>
+            <span class="text-gray-700">{{.}}</span>
+          </li>
+          {{/SLIDE_6_CONTENT}}
+        </ul>
+        <div class="text-right text-sm text-gray-400">6 / {{TOTAL_SLIDES}}</div>
+      </section>
+    </div>
+
+    <!-- ==================== SLIDE 7: TRACTION ==================== -->
+    <div class="slide-container hidden" data-slide="7">
+      <section class="slide bg-white rounded-lg shadow-2xl p-16 flex flex-col">
+        <h2 class="text-4xl font-heading font-bold text-primary mb-10">{{SLIDE_7_HEADLINE}}</h2>
+        <div class="grid grid-cols-2 gap-6 flex-grow items-center">
+          {{#SLIDE_7_METRICS}}
+          <div class="bg-gray-50 rounded-xl p-6 text-center">
+            <div class="text-4xl font-heading font-bold text-primary">{{VALUE}}</div>
+            <div class="text-gray-500 mt-2">{{LABEL}}</div>
+          </div>
+          {{/SLIDE_7_METRICS}}
+        </div>
+        <div class="text-right text-sm text-gray-400">7 / {{TOTAL_SLIDES}}</div>
+      </section>
+    </div>
+
+    <!-- ==================== SLIDE 8: COMPETITION ==================== -->
+    <div class="slide-container hidden" data-slide="8">
+      <section class="slide bg-white rounded-lg shadow-2xl p-16 flex flex-col">
+        <h2 class="text-4xl font-heading font-bold text-primary mb-8">{{SLIDE_8_HEADLINE}}</h2>
+        <div class="flex-grow flex">
+          <!-- 2x2 Matrix -->
+          <div class="flex-grow relative">
+            <!-- Axes -->
+            <div class="absolute left-1/2 top-0 bottom-0 w-px bg-gray-300"></div>
+            <div class="absolute top-1/2 left-0 right-0 h-px bg-gray-300"></div>
+            <!-- You marker -->
+            <div class="absolute top-1/4 right-1/4 transform translate-x-1/2 -translate-y-1/2">
+              <div class="w-16 h-16 rounded-full bg-accent flex items-center justify-center text-white font-bold shadow-lg">
+                You
+              </div>
+            </div>
+            <!-- Axis labels -->
+            <div class="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-sm text-gray-500">Feature Breadth →</div>
+            <div class="absolute top-1/2 -left-8 transform -translate-y-1/2 -rotate-90 text-sm text-gray-500">Innovation →</div>
+          </div>
+          <!-- Differentiators -->
+          <div class="w-64 pl-8">
+            <h3 class="font-bold text-gray-700 mb-4">Why We Win</h3>
+            <ul class="space-y-3 text-sm">
+              {{#SLIDE_8_CONTENT}}
+              <li class="flex items-start">
+                <span class="text-accent mr-2">✓</span>
+                <span class="text-gray-600">{{.}}</span>
+              </li>
+              {{/SLIDE_8_CONTENT}}
+            </ul>
+          </div>
+        </div>
+        <div class="text-right text-sm text-gray-400">8 / {{TOTAL_SLIDES}}</div>
+      </section>
+    </div>
+
+    <!-- ==================== SLIDE 9: TEAM ==================== -->
+    <div class="slide-container hidden" data-slide="9">
+      <section class="slide bg-white rounded-lg shadow-2xl p-16 flex flex-col">
+        <h2 class="text-4xl font-heading font-bold text-primary mb-10">{{SLIDE_9_HEADLINE}}</h2>
+        <div class="grid grid-cols-4 gap-8 flex-grow items-start pt-4">
+          {{#SLIDE_9_TEAM}}
+          <div class="text-center">
+            <div class="w-24 h-24 rounded-full bg-gray-200 mx-auto mb-4 flex items-center justify-center text-3xl text-gray-400">
+              {{INITIALS}}
+            </div>
+            <div class="font-bold text-gray-800">{{NAME}}</div>
+            <div class="text-sm text-gray-500">{{TITLE}}</div>
+            <div class="text-xs text-gray-400 mt-1">{{CREDENTIALS}}</div>
+          </div>
+          {{/SLIDE_9_TEAM}}
+        </div>
+        <div class="text-right text-sm text-gray-400">9 / {{TOTAL_SLIDES}}</div>
+      </section>
+    </div>
+
+    <!-- ==================== SLIDE 10: FINANCIALS ==================== -->
+    <div class="slide-container hidden" data-slide="10">
+      <section class="slide bg-white rounded-lg shadow-2xl p-16 flex flex-col">
+        <h2 class="text-4xl font-heading font-bold text-primary mb-10">{{SLIDE_10_HEADLINE}}</h2>
+        <div class="flex-grow">
+          <div class="bg-gray-50 rounded-xl p-8 mb-6">
+            <div class="text-center text-gray-400 mb-4">[Revenue Projection Chart]</div>
+            <div class="flex justify-around">
+              {{#SLIDE_10_PROJECTIONS}}
+              <div class="text-center">
+                <div class="text-2xl font-bold text-primary">{{VALUE}}</div>
+                <div class="text-sm text-gray-500">{{YEAR}}</div>
+              </div>
+              {{/SLIDE_10_PROJECTIONS}}
+            </div>
+          </div>
+          <ul class="space-y-3 text-lg">
+            {{#SLIDE_10_CONTENT}}
+            <li class="flex items-start">
+              <span class="text-accent mr-3">•</span>
+              <span class="text-gray-700">{{.}}</span>
+            </li>
+            {{/SLIDE_10_CONTENT}}
+          </ul>
+        </div>
+        <div class="text-right text-sm text-gray-400">10 / {{TOTAL_SLIDES}}</div>
+      </section>
+    </div>
+
+    <!-- ==================== SLIDE 11: THE ASK ==================== -->
+    <div class="slide-container hidden" data-slide="11">
+      <section class="slide bg-white rounded-lg shadow-2xl p-16 flex flex-col">
+        <h2 class="text-4xl font-heading font-bold text-primary mb-10">{{SLIDE_11_HEADLINE}}</h2>
+        <div class="flex-grow flex items-center">
+          <div class="w-full">
+            <div class="text-center mb-10">
+              <div class="text-6xl font-heading font-bold text-accent">{{ASK_AMOUNT}}</div>
+              <div class="text-xl text-gray-500 mt-2">{{ASK_ROUND}}</div>
+            </div>
+            <div class="grid grid-cols-2 gap-6">
+              {{#SLIDE_11_USE_OF_FUNDS}}
+              <div class="bg-gray-50 rounded-lg p-4 flex items-center">
+                <div class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-bold mr-4">
+                  {{PERCENT}}
+                </div>
+                <div>
+                  <div class="font-bold text-gray-800">{{CATEGORY}}</div>
+                  <div class="text-sm text-gray-500">{{DESCRIPTION}}</div>
+                </div>
+              </div>
+              {{/SLIDE_11_USE_OF_FUNDS}}
+            </div>
+          </div>
+        </div>
+        <div class="text-right text-sm text-gray-400">11 / {{TOTAL_SLIDES}}</div>
+      </section>
+    </div>
+
+    <!-- ==================== SLIDE 12: VISION/CLOSE ==================== -->
+    <div class="slide-container hidden" data-slide="12">
+      <section class="slide bg-gradient-to-br from-primary to-secondary rounded-lg shadow-2xl flex flex-col justify-center items-center text-white p-16">
+        <h1 class="text-5xl font-heading font-bold mb-8 text-center">{{SLIDE_12_HEADLINE}}</h1>
+        <p class="text-xl opacity-90 text-center max-w-2xl mb-12">{{SLIDE_12_CONTENT}}</p>
+        <div class="text-lg opacity-75">{{COMPANY_NAME}}</div>
+        <div class="text-sm opacity-50 mt-2">{{CONTACT_EMAIL}}</div>
+      </section>
+    </div>
+
+  </main>
+
+  <!-- Thumbnail Overview Modal -->
+  <div id="thumbnailModal" class="hidden fixed inset-0 bg-black bg-opacity-90 z-50 overflow-auto">
+    <button id="closeThumbnails" class="fixed top-4 right-4 text-white text-3xl hover:text-gray-300">&times;</button>
+    <div class="grid grid-cols-4 gap-6 p-8 max-w-7xl mx-auto">
+      <!-- Thumbnails generated by JS -->
+    </div>
+  </div>
+
+  <script>
+    // State
+    let currentSlide = 1;
+    const totalSlides = {{TOTAL_SLIDES}};
+    let isFullscreen = false;
+
+    // DOM Elements
+    const slidesContainer = document.getElementById('slidesContainer');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const slideCounter = document.getElementById('slideCounter');
+    const thumbnailBtn = document.getElementById('thumbnailBtn');
+    const thumbnailModal = document.getElementById('thumbnailModal');
+    const closeThumbnails = document.getElementById('closeThumbnails');
+    const fullscreenBtn = document.getElementById('fullscreenBtn');
+
+    // Show specific slide
+    function showSlide(n) {
+      // Clamp to valid range
+      n = Math.max(1, Math.min(totalSlides, n));
+
+      // Hide all slides
+      document.querySelectorAll('[data-slide]').forEach(slide => {
+        slide.classList.add('hidden');
+      });
+
+      // Show target slide
+      const targetSlide = document.querySelector(`[data-slide="${n}"]`);
+      if (targetSlide) {
+        targetSlide.classList.remove('hidden');
+      }
+
+      // Update state
+      currentSlide = n;
+      slideCounter.textContent = `${n} / ${totalSlides}`;
+
+      // Update button states
+      prevBtn.disabled = n === 1;
+      nextBtn.disabled = n === totalSlides;
+    }
+
+    // Navigation handlers
+    prevBtn.addEventListener('click', () => showSlide(currentSlide - 1));
+    nextBtn.addEventListener('click', () => showSlide(currentSlide + 1));
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (thumbnailModal.classList.contains('hidden')) {
+        if (e.key === 'ArrowRight' || e.key === ' ') {
+          e.preventDefault();
+          showSlide(currentSlide + 1);
+        }
+        if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          showSlide(currentSlide - 1);
+        }
+        if (e.key === 'Home') {
+          e.preventDefault();
+          showSlide(1);
+        }
+        if (e.key === 'End') {
+          e.preventDefault();
+          showSlide(totalSlides);
+        }
+      }
+      if (e.key === 'Escape') {
+        if (!thumbnailModal.classList.contains('hidden')) {
+          thumbnailModal.classList.add('hidden');
+        }
+        if (document.fullscreenElement) {
+          document.exitFullscreen();
+        }
+      }
+      if (e.key === 'f' || e.key === 'F') {
+        toggleFullscreen();
+      }
+    });
+
+    // Thumbnail modal
+    thumbnailBtn.addEventListener('click', () => {
+      generateThumbnails();
+      thumbnailModal.classList.remove('hidden');
+    });
+
+    closeThumbnails.addEventListener('click', () => {
+      thumbnailModal.classList.add('hidden');
+    });
+
+    thumbnailModal.addEventListener('click', (e) => {
+      if (e.target === thumbnailModal) {
+        thumbnailModal.classList.add('hidden');
+      }
+    });
+
+    function generateThumbnails() {
+      const grid = thumbnailModal.querySelector('.grid');
+      grid.innerHTML = '';
+
+      for (let i = 1; i <= totalSlides; i++) {
+        const thumb = document.createElement('div');
+        thumb.className = 'thumbnail bg-white rounded-lg shadow-lg overflow-hidden';
+        thumb.innerHTML = `
+          <div class="p-4 bg-primary text-white text-center font-bold">Slide ${i}</div>
+          <div class="p-4 text-sm text-gray-600 text-center">
+            ${getSlideTitle(i)}
+          </div>
+        `;
+        thumb.addEventListener('click', () => {
+          showSlide(i);
+          thumbnailModal.classList.add('hidden');
+        });
+        grid.appendChild(thumb);
+      }
+    }
+
+    function getSlideTitle(n) {
+      const titles = [
+        'Title', 'Problem', 'Solution', 'Market',
+        'Product', 'Business Model', 'Traction', 'Competition',
+        'Team', 'Financials', 'The Ask', 'Vision'
+      ];
+      return titles[n - 1] || `Slide ${n}`;
+    }
+
+    // Fullscreen
+    fullscreenBtn.addEventListener('click', toggleFullscreen);
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+        document.body.classList.add('fullscreen');
+      } else {
+        document.exitFullscreen();
+        document.body.classList.remove('fullscreen');
+      }
+    }
+
+    document.addEventListener('fullscreenchange', () => {
+      if (!document.fullscreenElement) {
+        document.body.classList.remove('fullscreen');
+      }
+    });
+
+    // Touch/swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    document.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+
+    document.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    });
+
+    function handleSwipe() {
+      const swipeThreshold = 50;
+      const diff = touchStartX - touchEndX;
+
+      if (Math.abs(diff) > swipeThreshold) {
+        if (diff > 0) {
+          showSlide(currentSlide + 1); // Swipe left = next
+        } else {
+          showSlide(currentSlide - 1); // Swipe right = prev
+        }
+      }
+    }
+
+    // Initialize
+    showSlide(1);
+  </script>
+</body>
+</html>

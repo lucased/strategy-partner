@@ -1,0 +1,162 @@
+{
+  "meta": {
+    "name": "Default Investor Deck Theme",
+    "version": "1.0.0",
+    "description": "Clean, professional theme for investor presentations"
+  },
+  "colors": {
+    "primary": "#4CFDC7",
+    "secondary": "#17554B",
+    "accent": "#F5FD6F",
+    "success": "#38a169",
+    "warning": "#d69e2e",
+    "error": "#e53e3e",
+    "text": {
+      "primary": "#1a202c",
+      "secondary": "#4a5568",
+      "muted": "#718096",
+      "inverse": "#ffffff"
+    },
+    "background": {
+      "default": "#ffffff",
+      "alt": "#4CFDC7",
+      "dark": "#0A1113",
+      "gradient": {
+        "from": "#1a365d",
+        "to": "#2c5282"
+      }
+    }
+  },
+  "typography": {
+    "headingFont": "Inter",
+    "bodyFont": "Inter",
+    "monoFont": "JetBrains Mono",
+    "headingSizes": {
+      "h1": "48px",
+      "h2": "36px",
+      "h3": "24px",
+      "h4": "20px"
+    },
+    "bodySizes": {
+      "large": "20px",
+      "default": "18px",
+      "small": "14px"
+    },
+    "lineHeight": {
+      "tight": "1.25",
+      "normal": "1.5",
+      "relaxed": "1.75"
+    },
+    "fontWeights": {
+      "normal": "400",
+      "medium": "500",
+      "semibold": "600",
+      "bold": "700"
+    }
+  },
+  "branding": {
+    "logo": {
+      "path": "./assets/logo.png",
+      "width": "120px",
+      "position": "top-right"
+    },
+    "companyName": "BTC Markets",
+    "tagline": "Trade Smart, Trade Safe"
+  },
+  "slides": {
+    "aspectRatio": "16:9",
+    "width": "1280px",
+    "height": "720px",
+    "padding": "60px",
+    "cornerRadius": "0px",
+    "shadow": "none"
+  },
+  "components": {
+    "bullets": {
+      "style": "disc",
+      "color": "accent",
+      "spacing": "0.75rem"
+    },
+    "charts": {
+      "colorPalette": [
+        "#1a365d",
+        "#2c5282",
+        "#4299e1",
+        "#63b3ed",
+        "#90cdf4",
+        "#ed8936",
+        "#f6ad55"
+      ]
+    },
+    "tables": {
+      "headerBg": "primary",
+      "headerText": "inverse",
+      "altRowBg": "#f7fafc",
+      "borderColor": "#e2e8f0",
+      "borderRadius": "8px"
+    },
+    "cards": {
+      "background": "#ffffff",
+      "borderColor": "#e2e8f0",
+      "borderRadius": "12px",
+      "shadow": "0 4px 6px -1px rgba(0, 0, 0, 0.1)"
+    },
+    "metrics": {
+      "valueFontSize": "48px",
+      "labelFontSize": "14px",
+      "valueColor": "primary",
+      "labelColor": "secondary"
+    }
+  },
+  "slideTypes": {
+    "title": {
+      "layout": "centered",
+      "background": "gradient",
+      "textColor": "inverse",
+      "showLogo": true
+    },
+    "content": {
+      "layout": "left-aligned",
+      "background": "default",
+      "showLogo": true,
+      "showPageNumber": true
+    },
+    "section": {
+      "layout": "centered",
+      "background": "primary",
+      "textColor": "inverse",
+      "showLogo": false
+    },
+    "twoColumn": {
+      "layout": "split-50-50",
+      "background": "default",
+      "showLogo": true
+    },
+    "metrics": {
+      "layout": "grid-2x2",
+      "background": "default",
+      "showLogo": true
+    },
+    "comparison": {
+      "layout": "matrix-2x2",
+      "background": "default",
+      "axisColor": "secondary"
+    },
+    "team": {
+      "layout": "grid",
+      "photoSize": "120px",
+      "photoRadius": "50%"
+    },
+    "closing": {
+      "layout": "centered",
+      "background": "gradient",
+      "textColor": "inverse",
+      "showLogo": true
+    }
+  },
+  "animations": {
+    "enabled": false,
+    "transition": "fade",
+    "duration": "300ms"
+  }
+}
